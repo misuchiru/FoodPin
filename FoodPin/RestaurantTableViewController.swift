@@ -88,4 +88,15 @@ class RestaurantTableViewController: UITableViewController {
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
     }
     
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == .Delete {
+            self.restaurantNames.removeAtIndex(indexPath.row)
+            self.restaurantImages.removeAtIndex(indexPath.row)
+            self.restaurantIsVisited.removeAtIndex(indexPath.row)
+            
+          //  self.tableView.reloadData() #刪除後重整畫面
+            self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade) //刪除資料with Fade out 動畫
+        }
+    }
+    
 }
