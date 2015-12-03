@@ -14,6 +14,8 @@ class RestaurantTableViewController: UITableViewController {
     
     var restaurantImages = ["cafedeadend.jpg", "homei.jpg", "teakha.jpg", "cafeloisl.jpg", "petiteoyster.jpg", "forkeerestaurant.jpg", "posatelier.jpg", "bourkestreetbakery.jpg", "haighschocolate.jpg", "palominoespresso.jpg", "upstate.jpg", "traif.jpg", "grahamavenuemeats.jpg", "wafflewolf.jpg", "fiveleaves.jpg", "cafelore.jpg", "confessional.jpg", "barrafina.jpg", "donostia.jpg", "royaloak.jpg", "thaicafe.jpg"]
     
+    var restaurantIsVisited = [Bool](count: 21, repeatedValue: false)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -48,6 +50,12 @@ class RestaurantTableViewController: UITableViewController {
         cell.thumbnailImageView.layer.cornerRadius = cell.thumbnailImageView.frame.size.width / 2
         cell.thumbnailImageView.clipsToBounds = true
         
+        if restaurantIsVisited[indexPath.row]{
+            cell.accessoryType = .Checkmark
+        }else {
+            cell.accessoryType = .None
+        }
+        
         return cell
     }
     
@@ -73,8 +81,11 @@ class RestaurantTableViewController: UITableViewController {
             
             let cell = tableView.cellForRowAtIndexPath(indexPath)
             cell?.accessoryType = .Checkmark
+            self.restaurantIsVisited[indexPath.row] = true
             })
         optionMenu.addAction(isVisitedAction)
+        
+        tableView.deselectRowAtIndexPath(indexPath, animated: false)
     }
     
 }
