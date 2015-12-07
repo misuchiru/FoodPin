@@ -15,11 +15,11 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Cell" rowHeight="80" id="Kg8-0H-cfN" customClass="CustomTableViewCell" customModule="FoodPin" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="80" id="Kg8-0H-cfN" customClass="CustomTableViewCell" customModule="FoodPin" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="92" width="320" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Kg8-0H-cfN" id="JcJ-RG-Wk4">
-                                    <rect key="frame" x="0.0" y="0.0" width="287" height="79.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="79.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NBg-Nn-3z5">
@@ -56,7 +56,7 @@
                                     <outlet property="nameLabel" destination="BWv-f7-YvL" id="0yX-pI-HEd"/>
                                     <outlet property="thumbnailImageView" destination="NBg-Nn-3z5" id="N5C-TN-fn8"/>
                                     <outlet property="typeLabel" destination="wfr-L7-K1F" id="Wuc-g4-CbW"/>
-                                    <segue destination="kX1-Ws-Joh" kind="push" id="1tM-sm-0V8"/>
+                                    <segue destination="kX1-Ws-Joh" kind="push" identifier="" id="1tM-sm-0V8"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -71,10 +71,10 @@
             </objects>
             <point key="canvasLocation" x="-3" y="569"/>
         </scene>
-        <!--View Controller-->
+        <!--Detail View Controller-->
         <scene sceneID="fBD-TK-zfm">
             <objects>
-                <viewController id="kX1-Ws-Joh" sceneMemberID="viewController">
+                <viewController id="kX1-Ws-Joh" customClass="DetailViewController" customModule="FoodPin" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="4n1-qQ-eIg"/>
                         <viewControllerLayoutGuide type="bottom" id="ar5-oh-Gqr"/>
@@ -92,6 +92,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="hmd-oK-zNo"/>
+                    <connections>
+                        <outlet property="restaurantImageView" destination="Dj1-Yx-KxD" id="OvU-Vv-kg2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cS5-Rb-2ZR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
