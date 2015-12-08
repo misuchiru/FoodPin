@@ -22,19 +22,15 @@ class RestaurantTableViewController: UITableViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
-    // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return self.restaurantNames.count
     }
     
@@ -60,33 +56,33 @@ class RestaurantTableViewController: UITableViewController {
     }
     
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
-        let optionMenu = UIAlertController(title: nil, message: "What do you want to do?", preferredStyle: .ActionSheet)
-        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
-        optionMenu.addAction(cancelAction)
-        self.presentViewController(optionMenu, animated: true, completion: nil)
-        
-        let callActionHandler = { (action:UIAlertAction!) -> Void in
-            let alertMessage = UIAlertController(title: "Service Unavailable", message: "Sorry, the call feature is not available yet. Please retry later.", preferredStyle: .Alert)
-            alertMessage.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-            self.presentViewController(alertMessage, animated: true, completion: nil)
-        }
-        let callAction = UIAlertAction(title: "Call " + "123-000\(indexPath.row)", style: UIAlertActionStyle.Default, handler: callActionHandler)
-        optionMenu.addAction(callAction)
-        
-        
-        let isVisitedAction = UIAlertAction(title: "I've been here", style: .Default, handler:{
-            (action:UIAlertAction!) -> Void in
-            
-            let cell = tableView.cellForRowAtIndexPath(indexPath)
-            cell?.accessoryType = .Checkmark
-            self.restaurantIsVisited[indexPath.row] = true
-            })
-        optionMenu.addAction(isVisitedAction)
-        
-        tableView.deselectRowAtIndexPath(indexPath, animated: false)
-    }
+//    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+//        
+//        let optionMenu = UIAlertController(title: nil, message: "What do you want to do?", preferredStyle: .ActionSheet)
+//        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+//        optionMenu.addAction(cancelAction)
+//        self.presentViewController(optionMenu, animated: true, completion: nil)
+//        
+//        let callActionHandler = { (action:UIAlertAction!) -> Void in
+//            let alertMessage = UIAlertController(title: "Service Unavailable", message: "Sorry, the call feature is not available yet. Please retry later.", preferredStyle: .Alert)
+//            alertMessage.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+//            self.presentViewController(alertMessage, animated: true, completion: nil)
+//        }
+//        let callAction = UIAlertAction(title: "Call " + "123-000\(indexPath.row)", style: UIAlertActionStyle.Default, handler: callActionHandler)
+//        optionMenu.addAction(callAction)
+//        
+//        
+//        let isVisitedAction = UIAlertAction(title: "I've been here", style: .Default, handler:{
+//            (action:UIAlertAction!) -> Void in
+//            
+//            let cell = tableView.cellForRowAtIndexPath(indexPath)
+//            cell?.accessoryType = .Checkmark
+//            self.restaurantIsVisited[indexPath.row] = true
+//            })
+//        optionMenu.addAction(isVisitedAction)
+//        
+//        tableView.deselectRowAtIndexPath(indexPath, animated: false)
+//    }
     
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
@@ -125,6 +121,15 @@ class RestaurantTableViewController: UITableViewController {
             }
         )
         return [deleteAction, shareAction]
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+        if segue.identifier == "showRestaurantDetail" {
+            if let indexPath = self.tableView.indexPathForSelectedRow() {
+                let destinationController = segue.destinationViewController as! DetailViewController
+                destinationController.restaurantImage = self.restaurantImages[indexPath.row]
+            }
+        }
     }
     
 }
